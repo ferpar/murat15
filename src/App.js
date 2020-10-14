@@ -47,12 +47,13 @@ function App() {
   const [keys, setKeys] = useState(allKeys)
 
   return <React.Fragment>
-      <StackedBarChart data={data}/>
+      <h2>Stacked Bars with D3</h2>
+      <StackedBarChart data={data} keys={keys} colors={colors}/>
       <br/>
-      <div class="fields">
+      <div className="fields">
         {
         allKeys.map( key => ( 
-          <div class="field">
+          <div className="field" key={key}>
             <input 
               id={key}
               type="checkbox"
@@ -65,7 +66,7 @@ function App() {
                 }
               }}
             />
-            <label for={key} style={{color: colors[key]}}>
+            <label htmlFor={key} style={{color: colors[key]}}>
               {key}
             </label>
           </div>
