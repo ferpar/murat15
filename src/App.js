@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StackedBarChart from "./StackedBarChart"
 import "./App.css";
 
-const initialData = [
+const data = [
   {
     year: 1980,
     "🥑": 10,
@@ -43,7 +43,6 @@ const colors = {
 }
 
 function App() {
-  const [data, setData] = useState(initialData)
   const [keys, setKeys] = useState(allKeys)
 
   return <React.Fragment>
