@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TreeChart from "./TreeChart"
+import StackedBarChart from "./StackedBarChart"
 import "./App.css";
 
 const initialData = [
@@ -35,12 +35,43 @@ const initialData = [
   }
 ]; 
 
+const allKeys = ["🥑", "🍌", "🍆"];
+const colors = {
+  "🥑": "green",
+  "🍌": "orange",
+  "🍆": "purple"
+}
 
 function App() {
   const [data, setData] = useState(initialData)
+  const [keys, setKeys] = useState(allKeys)
 
   return <React.Fragment>
-    <br/>
+      <StackedBarChart data={data}/>
+      <br/>
+      <div class="fields">
+        {
+        allKeys.map( key => ( 
+          <div class="field">
+            <input 
+              id={key}
+              type="checkbox"
+              checked={keys.includes(key)}
+              onChange={ e => {
+                if (e.target.checked) {
+                  setKeys(Array.from(new Set([...keys, key])));
+                } else {
+                  setKeys(keys.filter( _key => _key != key));
+                }
+              }}
+            />
+            <label for={key} style={{color: colors[key]}}>
+              {key}
+            </label>
+          </div>
+          )
+        )}
+      </div>
     </React.Fragment>;
 }
 
